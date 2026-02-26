@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Money Flow</title>
+  </head>
+  <body>
+    <header class="main-header">
+      <p class="welcome-message">Log in to get started</p>
+
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+
+      <form class="login-form">
+        <input
+          type="text"
+          placeholder="USER"
+          class="login-form__input login-form__user"
+        />
+        <input
+          type="text"
+          placeholder="PIN"
+          class="login-form__input login-form__pin"
+        />
+
+        <button type="submit" class="btn btn-outline">&rarr;</button>
+      </form>
+    </header>
+
+    <main class="hidden">
+      <div class="balance-info">
+        <h2 class="balance-info__label">Current balance</h2>
+        <p class="balance-info__date-label">
+          As of <span class="balance-info__date">26/02/2027 11:37</span>
+        </p>
+      </div>
+
+      <p class="balance-money">25 950, 59💲</p>
+
+      <div class="movements">
+        <div class="movement__row">
+          <p class="movement-type movement__deposit">2 deposit</p>
+          <p class="movement-date">20/02/2027</p>
+          <p class="movement-money">1300,00💲</p>
+        </div>
+
+        <div class="movement__row">
+          <p class="movement-type movement__withdrawal">1 withdrawal</p>
+          <p class="movement-date">20/02/2027</p>
+          <p class="movement-money">1300,00💲</p>
+        </div>
+      </div>
+
+      <div class="card transfer-money">
+        <h2>Transfer money</h2>
+        <form class="card__form transfer-money__form">
+          <input type="text" class="inp transfer-money__input-transfer-to" />
+          <input
+            type="number"
+            class="inp transfer-money__input-transfer-amount"
+          />
+
+          <button type="submit" class="btn">&rarr;</button>
+
+          <p class="card__label">Transfer to</p>
+          <p class="card__label">Amount</p>
+        </form>
+      </div>
+      <div class="card request-loan">
+        <h2>Request loan</h2>
+        <form class="card__form request-loan__form">
+          <input type="number" class="inp request-loan__input" />
+
+          <button type="submit" class="btn">&rarr;</button>
+
+          <p class="card__label">Amount</p>
+        </form>
+      </div>
+      <div class="card close-account">
+        <h2>Close account</h2>
+        <form class="card__form close-account__form">
+          <input type="text" class="inp close-account__input-user" />
+          <input type="number" class="inp close-account__input-pin" />
+
+          <button type="submit" class="btn">&rarr;</button>
+
+          <p class="card__label">Confirm user</p>
+          <p class="card__label">Confirm PIN</p>
+        </form>
+      </div>
+
+      <section class="minus-margin summary">
+        <p>IN <span class="incomes">27 035,20💲</span></p>
+        <p>OUT <span class="outcomes">1082,61💲</span></p>
+        <p>INTEREST <span class="interest">323,46💲</span></p>
+
+        <button class="btn-sort">&darr; SORT</button>
+      </section>
+
+      <section class="minus-margin timer">
+        You will be logged out in <span class="time">10:00</span>
+      </section>
+    </main>
+  </body>
+  <script src="js/main.js"></script>
+</html>

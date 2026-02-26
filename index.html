@@ -38,30 +38,30 @@
     </header>
 
     <main class="hidden">
-      <div class="balance-info">
+      <section class="balance-info">
         <h2 class="balance-info__label">Current balance</h2>
         <p class="balance-info__date-label">
           As of <span class="balance-info__date">26/02/2027 11:37</span>
         </p>
-      </div>
+      </section>
 
-      <p class="balance-money">25 950, 59💲</p>
+      <p class="balance-money">25 950, 59$</p>
 
-      <div class="movements">
+      <section class="movements">
         <div class="movement__row">
           <p class="movement-type movement__deposit">2 deposit</p>
           <p class="movement-date">20/02/2027</p>
-          <p class="movement-money">1300,00💲</p>
+          <p class="movement-money">1300,00$</p>
         </div>
 
         <div class="movement__row">
           <p class="movement-type movement__withdrawal">1 withdrawal</p>
           <p class="movement-date">20/02/2027</p>
-          <p class="movement-money">1300,00💲</p>
+          <p class="movement-money">1300,00$</p>
         </div>
-      </div>
+      </section>
 
-      <div class="card transfer-money">
+      <section class="card transfer-money">
         <h2>Transfer money</h2>
         <form class="card__form transfer-money__form">
           <input type="text" class="inp transfer-money__input-transfer-to" />
@@ -75,8 +75,9 @@
           <p class="card__label">Transfer to</p>
           <p class="card__label">Amount</p>
         </form>
-      </div>
-      <div class="card request-loan">
+      </section>
+
+      <section class="card request-loan">
         <h2>Request loan</h2>
         <form class="card__form request-loan__form">
           <input type="number" class="inp request-loan__input" />
@@ -85,8 +86,9 @@
 
           <p class="card__label">Amount</p>
         </form>
-      </div>
-      <div class="card close-account">
+      </section>
+
+      <section class="card close-account">
         <h2>Close account</h2>
         <form class="card__form close-account__form">
           <input type="text" class="inp close-account__input-user" />
@@ -97,12 +99,12 @@
           <p class="card__label">Confirm user</p>
           <p class="card__label">Confirm PIN</p>
         </form>
-      </div>
+      </section>
 
       <section class="minus-margin summary">
-        <p>IN <span class="incomes">27 035,20💲</span></p>
-        <p>OUT <span class="outcomes">1082,61💲</span></p>
-        <p>INTEREST <span class="interest">323,46💲</span></p>
+        <p>IN <span class="incomes">27 035,20$</span></p>
+        <p>OUT <span class="outflows">1082,61$</span></p>
+        <p>INT <span class="interest">323,46$</span></p>
 
         <button class="btn-sort">&darr; SORT</button>
       </section>
@@ -112,5 +114,6 @@
       </section>
     </main>
   </body>
-  <script src="js/main.js"></script>
+  <script type="module" src="js/account.js"></script>
+  <script type="module" src="js/main.js"></script>
 </html>

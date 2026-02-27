@@ -64,7 +64,7 @@ function computeUsernames() {
     const { owner } = acc;
     acc.username = owner
       .split(' ')
-      .map((n) => n[0].toUpperCase())
+      .map((n) => n[0].toLowerCase())
       .join('');
   });
 }

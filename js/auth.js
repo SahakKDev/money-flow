@@ -1,6 +1,7 @@
-import state from './state.js';
+import state, { resetState, setStateTimer } from './state.js';
 import { accounts } from './account.js';
 import {
+  setTimer,
   updateCurrentBalanceDate,
   updateUI,
   updateWelcomeMessage,
@@ -20,6 +21,7 @@ const closeAccountPinInput = document.querySelector(
 
 export function loginAccount(e) {
   e.preventDefault();
+  setStateTimer();
 
   const currentAccount = accounts.find(
     (acc) =>
@@ -33,14 +35,20 @@ export function loginAccount(e) {
     updateWelcomeMessage();
     mainDocument.classList.remove('hidden');
     updateCurrentBalanceDate();
+    setTimer();
   } else {
-    mainDocument.classList.add('hidden');
-    updateWelcomeMessage();
+    logoutAccount();
   }
 
   loginUserInput.value = '';
   loginUserPin.value = '';
   loginUserPin.blur();
+}
+
+export function logoutAccount() {
+  resetState();
+  mainDocument.classList.add('hidden');
+  updateWelcomeMessage();
 }
 
 export function closeAccount(e) {
@@ -54,9 +62,7 @@ export function closeAccount(e) {
     closeAccountUserInput.value === username &&
     +closeAccountPinInput.value === pin
   ) {
-    mainDocument.classList.add('hidden');
-    state.currentAccount = null;
-    updateWelcomeMessage();
+    logoutAccount();
 
     const currentAccountIndex = accounts.findIndex(
       (acc) => acc.username === username,

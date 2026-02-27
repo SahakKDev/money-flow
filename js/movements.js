@@ -22,16 +22,16 @@ export function displayMovements(sort = false) {
   updatedMoves.forEach(({ movement, movementDate }, i) => {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
+    let date;
     const currentDate = new Date(movementDate);
-    console.log(currentDate);
     const now = new Date();
+
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
     currentDate.setHours(0);
     currentDate.setMinutes(0);
     currentDate.setSeconds(0);
-    let date;
 
     const ONE_DAY = 24 * 60 * 60 * 1000;
 

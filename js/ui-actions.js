@@ -1,3 +1,4 @@
+import { logoutAccount } from './auth.js';
 import {
   calcDisplayBalance,
   calcDisplaySummary,
@@ -7,6 +8,7 @@ import state from './state.js';
 
 const welcomeLabel = document.querySelector('.welcome-message');
 const currentBalanceDateLabel = document.querySelector('.balance-info__date');
+const timeLabel = document.querySelector('.timer-label');
 
 export function updateUI() {
   displayMovements();
@@ -40,3 +42,22 @@ export function updateCurrentBalanceDate() {
 
   currentBalanceDateLabel.textContent = date;
 }
+
+export function setTimer() {
+  let min = String(Math.trunc(state.timer / 60)).padStart(2, 0);
+  let sec = String(state.timer % 60).padStart(2, 0);
+  timeLabel.textContent = `${min}:${sec}`;
+
+  state.timerId = setInterval(() => {
+    state.timer--;
+    min = String(Math.trunc(state.timer / 60)).padStart(2, 0);
+    sec = String(state.timer % 60).padStart(2, 0);
+    timeLabel.textContent = `${min}:${sec}`;
+
+    if (state.timer === 0) {
+      logoutAccount();
+    }
+  }, 1000);
+}
+
+export function stopTimer() {}

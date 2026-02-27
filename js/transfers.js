@@ -1,6 +1,6 @@
-import state from './state.js';
+import state, { setStateTimer } from './state.js';
 import { accounts } from './account.js';
-import { updateCurrentBalanceDate, updateUI } from './ui-actions.js';
+import { setTimer, updateCurrentBalanceDate, updateUI } from './ui-actions.js';
 
 const requestLoanInput = document.querySelector('.request-loan__input');
 
@@ -36,6 +36,8 @@ export function transferMoney(e) {
 
     updateUI();
     updateCurrentBalanceDate();
+    setStateTimer();
+    setTimer();
   }
 
   transferAccountUsernameInput.value = '';
@@ -62,6 +64,8 @@ export function requestLoan(e) {
 
       updateUI();
       updateCurrentBalanceDate();
+      setStateTimer();
+      setTimer();
     }, 2500);
   }
 

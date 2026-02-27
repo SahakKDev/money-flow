@@ -88,10 +88,6 @@ button[type='submit']:focus,
   padding-right: 0.6rem;
 }
 
-.inp[type='number'] {
-  padding-right: 0.6rem;
-}
-
 /*********************
  MAIN
 *********************/

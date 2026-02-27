@@ -3,7 +3,6 @@ class Account {
     owner,
     movements,
     movementsDates,
-    currency,
     locale,
     interestRate,
     pin,
@@ -11,7 +10,6 @@ class Account {
     this.owner = owner;
     this.movements = movements;
     this.movementsDates = movementsDates;
-    this.currency = currency;
     this.locale = locale;
     this.interestRate = interestRate;
     this.pin = pin;
@@ -30,9 +28,7 @@ const account1 = new Account(
     '2025-11-18T21:07:29.915Z',
     '2025-12-30T11:59:03.228Z',
     '2026-02-05T04:16:44.731Z',
-    2.4 + 5.46276 + 300 + 15.6,
   ],
-  'EUR',
   'pt-PT',
   1.2,
   1111,
@@ -51,7 +47,6 @@ const account2 = new Account(
     '2026-02-19T15:26:57.943Z',
     '2026-02-23T15:26:57.943Z',
   ],
-  'USD',
   'en-US',
   1.5,
   2222,

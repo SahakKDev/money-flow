@@ -1,21 +1,25 @@
-import { getCurrencySign } from './helper.js';
-
 const movementsContainer = document.querySelector('.movements');
 
 export function displayMovements(account) {
   movementsContainer.innerHTML = '';
-  const { movements, currency } = account;
+  const { movements, movementsDates, locale } = account;
 
   movements.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const date = movementsDates[i];
 
     movementsContainer.insertAdjacentHTML(
       'afterbegin',
       `
         <div class="movement__row">
           <p class="movement-type movement__${type}">${i + 1} ${type}</p>
-          <p class="movement-date">20/02/2027</p>
-          <p class="movement-money">${mov}${getCurrencySign(currency)}</p>
+          <p class="movement-date">${new Intl.DateTimeFormat(locale, {
+            year: 'numeric',
+            day: '2-digit',
+            month: '2-digit',
+          }).format(new Date(date))}
+          </p>
+          <p class="movement-money">${mov}$</p>
         </div>
       `,
     );

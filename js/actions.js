@@ -3,10 +3,20 @@ import { calcDisplayBalance, calcDisplaySummary } from './calculations.js';
 import { displayMovements } from './movements.js';
 import state from './state.js';
 
-const loginUserInput = document.querySelector('.login-form__user');
-const loginUserPin = document.querySelector('.login-form__pin');
 const mainDocument = document.querySelector('main');
 const welcomeLabel = document.querySelector('.welcome-message');
+
+const loginUserInput = document.querySelector('.login-form__user');
+const loginUserPin = document.querySelector('.login-form__pin');
+
+const requestLoanInput = document.querySelector('.request-loan__input');
+
+const closeAccountUserInput = document.querySelector(
+  '.close-account__input-user',
+);
+const closeAccountPinInput = document.querySelector(
+  '.close-account__input-pin',
+);
 
 const transferAccountUsernameInput = document.querySelector(
   '.transfer-money__input-transfer-to',
@@ -27,6 +37,11 @@ export function loginAccount(e) {
     state.currentAccount = currentAccount;
     mainDocument.classList.remove('hidden');
     updateUI(currentAccount);
+    updateWelcomeMessage(currentAccount.owner);
+    mainDocument.classList.remove('hidden');
+  } else {
+    mainDocument.classList.add('hidden');
+    updateWelcomeMessage()
   }
 
   loginUserInput.value = '';
@@ -65,13 +80,70 @@ export function transferMoney(e) {
   transferAccountAmountInput.blur();
 }
 
+export function requestLoan(e) {
+  e.preventDefault();
+  const { currentAccount } = state;
+
+  const amount = +requestLoanInput.value;
+
+  const incomes = currentAccount.movements.filter((mov) => mov > 0);
+
+  if (
+    Number.isFinite(amount) &&
+    amount > 0 &&
+    incomes.some((income) => amount * 0.1 <= income)
+  ) {
+    currentAccount.movements.push(amount);
+    currentAccount.movementsDates.push(new Date().toISOString());
+
+    updateUI(currentAccount);
+  }
+
+  requestLoanInput.value = '';
+  requestLoanInput.blur();
+}
+
+export function closeAccount(e) {
+  e.preventDefault();
+
+  const {
+    currentAccount: { username, pin },
+  } = state;
+
+  if (
+    closeAccountUserInput.value === username &&
+    +closeAccountPinInput.value === pin
+  ) {
+    mainDocument.classList.add('hidden');
+    state.currentAccount = null;
+    updateWelcomeMessage();
+  }
+
+  closeAccountUserInput.value = '';
+  closeAccountPinInput.value = '';
+  closeAccountPinInput.blur();
+
+  const currentAccountIndex = accounts.findIndex(
+    (acc) => acc.username === username,
+  );
+
+  accounts.splice(currentAccountIndex, 1);
+}
+
 //TODO remove export
 export function updateUI(currentAccount) {
   displayMovements(currentAccount);
   calcDisplayBalance(currentAccount);
   calcDisplaySummary(currentAccount);
+}
+//TODO remove export
+export function updateWelcomeMessage(owner) {
+  if (!owner) {
+    welcomeLabel.textContent = 'Log in to get started';
+    return
+  }
 
-  const accOwnerName = currentAccount.owner.split(' ')[0];
+  const accOwnerName = owner.split(' ')[0];
 
   welcomeLabel.textContent = `Welcome back, ${accOwnerName}`;
 }

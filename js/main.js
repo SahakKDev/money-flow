@@ -1,7 +1,14 @@
 'use strict';
 
 import { account1 } from './account.js';
-import { loginAccount, transferMoney, updateUI } from './actions.js';
+import {
+  closeAccount,
+  loginAccount,
+  requestLoan,
+  transferMoney,
+  updateUI,
+  updateWelcomeMessage,
+} from './actions.js';
 import { calcDisplayBalance, calcDisplaySummary } from './calculations.js';
 import { displayMovements } from './movements.js';
 import state from './state.js';
@@ -18,6 +25,8 @@ const interestLabel = document.querySelector('.interest');
 
 const btnLogin = document.querySelector('.btn-login');
 const btnTransferMoney = document.querySelector('.btn-transfer-money');
+const btnRequestLoan = document.querySelector('.btn-request-loan');
+const btnCloseAccount = document.querySelector('.btn-close-account');
 
 /* **********************
   STATE
@@ -26,6 +35,7 @@ const { currentAccount } = state;
 
 //TODO
 updateUI(currentAccount);
+updateWelcomeMessage(currentAccount.owner);
 /* ************************* */
 
 /* **********************
@@ -34,3 +44,5 @@ updateUI(currentAccount);
 
 btnLogin.addEventListener('click', loginAccount);
 btnTransferMoney.addEventListener('click', transferMoney);
+btnRequestLoan.addEventListener('click', requestLoan);
+btnCloseAccount.addEventListener('click', closeAccount);

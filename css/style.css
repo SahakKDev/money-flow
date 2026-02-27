@@ -159,6 +159,7 @@ main {
 
 .movement-date {
   font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 .movement-money {

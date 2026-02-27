@@ -1,12 +1,5 @@
 class Account {
-  constructor(
-    owner,
-    movements,
-    movementsDates,
-    locale,
-    interestRate,
-    pin,
-  ) {
+  constructor(owner, movements, movementsDates, locale, interestRate, pin) {
     this.owner = owner;
     this.movements = movements;
     this.movementsDates = movementsDates;
@@ -23,11 +16,11 @@ const account1 = new Account(
     '2025-01-14T08:23:41.372Z',
     '2025-03-27T14:55:09.104Z',
     '2025-05-09T02:11:37.889Z',
-    '2025-07-22T19:48:52.563Z',
-    '2025-09-03T06:34:15.047Z',
-    '2025-11-18T21:07:29.915Z',
-    '2025-12-30T11:59:03.228Z',
-    '2026-02-05T04:16:44.731Z',
+    '2026-02-19T20:00:00.047Z',
+    '2026-02-20T06:34:15.047Z',
+    '2026-02-25T19:34:15.047Z',
+    '2026-02-26T19:59:15.047Z',
+    '2026-02-27T06:34:15.047Z',
   ],
   'pt-PT',
   1.2,

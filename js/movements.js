@@ -6,7 +6,6 @@ const incomesLabel = document.querySelector('.incomes');
 const outflowsLabel = document.querySelector('.outflows');
 const interestLabel = document.querySelector('.interest');
 
-
 export function displayMovements(sort = false) {
   movementsContainer.innerHTML = '';
   const { movements, movementsDates, locale } = state.currentAccount;
@@ -23,16 +22,42 @@ export function displayMovements(sort = false) {
   updatedMoves.forEach(({ movement, movementDate }, i) => {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
 
+    const currentDate = new Date(movementDate);
+    console.log(currentDate);
+    const now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    currentDate.setHours(0);
+    currentDate.setMinutes(0);
+    currentDate.setSeconds(0);
+    let date;
+
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+
+    if (now - currentDate < ONE_DAY) {
+      date = 'today';
+    } else if (now - currentDate < 2 * ONE_DAY) {
+      date = 'yesterday';
+    } else if (
+      now - currentDate < 8 * ONE_DAY &&
+      now.getDate() - currentDate.getDate() !== 8
+    ) {
+      date = `${now.getDate() - currentDate.getDate()} days ago`;
+    } else {
+      date = new Intl.DateTimeFormat(locale, {
+        year: 'numeric',
+        day: '2-digit',
+        month: '2-digit',
+      }).format(currentDate);
+    }
+
     movementsContainer.insertAdjacentHTML(
       'afterbegin',
       `
         <div class="movement__row">
           <p class="movement-type movement__${type}">${i + 1} ${type}</p>
-          <p class="movement-date">${new Intl.DateTimeFormat(locale, {
-            year: 'numeric',
-            day: '2-digit',
-            month: '2-digit',
-          }).format(new Date(movementDate))}
+          <p class="movement-date">${date}
           </p>
           <p class="movement-money">${movement.toFixed(2)}$</p>
         </div>
@@ -81,4 +106,3 @@ export function calcDisplaySummary() {
   outflowsLabel.textContent = `${outflows}$`;
   interestLabel.textContent = `${interest}$`;
 }
-
